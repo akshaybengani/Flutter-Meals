@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:meals_app/dummy_data.dart';
 
-
 class MealDetailsScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
+
+  final Function toggleFavourite;
+  final Function isFavorite;
+  MealDetailsScreen(this.toggleFavourite, this.isFavorite);
 
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(
@@ -113,10 +116,9 @@ class MealDetailsScreen extends StatelessWidget {
             ),
             buildSectionTitle(context, 'More'),
             Container(
-              
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.symmetric(horizontal: 10),
-              child: Row(                
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Row(
@@ -148,6 +150,12 @@ class MealDetailsScreen extends StatelessWidget {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          isFavorite(mealId) ? Icons.favorite : Icons.favorite_border,
+        ),
+        onPressed: () => toggleFavourite(mealId),
       ),
     );
   }

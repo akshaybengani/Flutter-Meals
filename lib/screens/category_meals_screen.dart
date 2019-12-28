@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/dummy_data.dart';
+import 'package:meals_app/modals/meal.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
   static const routeName = '/category-meals';
+
+  final List<Meal> availableMeals;
+
+  CategoryMealsScreen(this.availableMeals);
+
   // final String categoryId;
   // final String categoryTitle;
 
@@ -19,7 +24,7 @@ class CategoryMealsScreen extends StatelessWidget {
     // categoryMeals is a whole long array of DUMMY_MEALS
     //sorted in such a form that the categoryID array items come with the object
     // Now we have the whole list of meal object with all its properties.
-    final categoryMeals = DUMMY_MEALS.where((meal) {
+    final categoryMeals =  availableMeals.where((meal) {
       return meal.categories.contains(categoryID);
     }).toList();
 
