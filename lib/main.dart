@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:meals_app/screens/categories_screen.dart';
 import 'package:meals_app/screens/category_meals_screen.dart';
 import 'package:meals_app/screens/meal_details_screen.dart';
+import 'package:meals_app/screens/settings_screen.dart';
+import 'package:meals_app/screens/tabs_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,12 +33,13 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: MyHomePage(),
+      // home: MyHomePage(),
       // initialRoute: '/',
       routes: {
-        // '/':(ctx) => MyHomePage(),
+        '/':(ctx) => TabsScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailsScreen.routeName: (ctx) => MealDetailsScreen(),
+        SettingsScreen.routeName: (ctx) => SettingsScreen(),
       },
       onGenerateRoute: (settings) {
         // This is useful when we create highly dynamic apps which they dont know what page will be the next
@@ -50,7 +53,7 @@ class MyApp extends StatelessWidget {
         // }
 
         return MaterialPageRoute(
-          builder: (ctx) => MyHomePage(),
+          builder: (ctx) => CategoriesScreen(),
         );
       },
 
@@ -58,30 +61,21 @@ class MyApp extends StatelessWidget {
       // Its like a 404 page we can use it in flutter web
       onUnknownRoute: (settings) {
         return MaterialPageRoute(
-          builder: (ctx) => MyHomePage(),
+          builder: (ctx) => CategoriesScreen(),
         );
       },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+// class MyHomePage extends StatefulWidget {
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
 
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Meals App',
-          style: TextStyle(color: Colors.white, fontSize: 25),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
-      body: CategoriesScreen(),
-    );
-  }
-}
+// class _MyHomePageState extends State<MyHomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return CategoriesScreen();
+//   }
+// }
